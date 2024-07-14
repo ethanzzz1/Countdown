@@ -1,14 +1,14 @@
 package ethan.herniquez.countdown
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
-import android.widget.TextView
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var startButton: Button
     private lateinit var pauseButton: Button
     private lateinit var resumeButton: Button
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var resetButton: ImageButton
 
     private var countDownTimer: CountDownTimer? = null
-    private var timeLeftInMillis: Long = 120000 // 2 minutos en milisegundos
+    private var timeLeftInMillis: Long = 30000 // 2 minutos en milisegundos
     private var isTimerRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +78,11 @@ class MainActivity : AppCompatActivity() {
                 pauseButton.visibility = Button.GONE
                 resumeButton.visibility = Button.GONE
                 resetButton.visibility = Button.GONE
+
+                // Aquí es donde se redirige a otra Activity cuando el temporizador finaliza
+                val intent = Intent(this@MainActivity, activity_ejercicio::class.java)
+                startActivity(intent)
+                finish() // Opcional: Si deseas cerrar la actividad actual
             }
         }.start()
 
